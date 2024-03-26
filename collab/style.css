@@ -208,15 +208,15 @@
 }
 
 .vendorAppBtn:hover {
-    background-color: ;
-    border: #9A54BC;
-    border-radius: ;
+    background-color: #60267F;
+    border: 2px solid #9A54BC;
+    border-radius: 3px;
     color: white;
     cursor: pointer;
 }
 
-.supervisiorBtn:hover {
-    background-color: ;
+.superVisiorBtn:hover {
+    background-color: #60267F;
     border: #9A54BC;
     border-radius: 3px;
     color: white;
@@ -235,7 +235,7 @@
 
 .textBox {
     width: 70%;
-    background-color: ;
+    background-color:#F2F2F2;
     padding: 20px 50px;
     font-weight: 600px;
     font-size: 10px;
