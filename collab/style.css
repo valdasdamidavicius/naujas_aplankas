@@ -102,3 +102,150 @@
     color: #9A54BC;
     cursor: pointer;
 }
+
+.elipseContainer {
+    position: relative;
+    margin-top: 250px;
+}
+
+.allElipseWithButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.allElipseWithButton img {
+    position: absolute;
+}
+
+.smallElipse {
+    top: -160px;
+}
+
+.rectangle {
+    top: -150px;
+}
+
+.collabWord {
+    top: -45px;
+}
+
+.elipseButton {
+    position: absolute;
+    bottom: -140px;
+    padding: 5px, 15px;
+    border: none;
+    border: 2px solid #9A54BC;
+    background-color: white;
+    color: #9A54BC;
+    border-radius: 5px;
+}
+
+.fiveIconsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 300px;
+    gap: 50px;
+}
+
+.fiveIconsContainer h2 {
+    font-size: 36px;
+}
+
+.fiveIconContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+}
+
+.fiveIconContainer img {
+    width: 100px;
+}
+
+.howHelpContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 150px;
+    gap: 50px;
+}
+
+.paraPhoneContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.paraContainer {
+    width: 50%;
+}
+
+.howHelpButtons {
+    width: 100%;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    gap: 5px;
+    padding: 0 2px 0 2px;
+    box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.72);
+    -webkit-box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.72);
+    -moz-box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.72);
+}
+
+.howHelpButtons button {
+    width: 50%;
+    padding: 6px 0 6px 0;
+    border: none;
+    background-color: transparent;
+}
+
+.vendorAppBtn:hover {
+    background-color: ;
+    border: #9A54BC;
+    border-radius: ;
+    color: white;
+    cursor: pointer;
+}
+
+.supervisiorBtn:hover {
+    background-color: ;
+    border: #9A54BC;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+}
+
+.allTextContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.textBox {
+    width: 70%;
+    background-color: ;
+    padding: 20px 50px;
+    font-weight: 600px;
+    font-size: 10px;
+}
+
+.imgContainer img {
+    width: 200px;
+    margin-left: 100px;
+}
+
+.imgContainer {
+    width: 50%;
+}
