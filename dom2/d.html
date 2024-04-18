@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <title>Document</title>
+
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .counter_div {
+            width: 30rem;
+            height: 15rem;
+            padding: 1rem;
+            text-align: center;
+            background-color: darkcyan;
+        }
+
+        .counter_div > * {
+            margin-top: 2rem;
+        }
+
+        .counter_div span {
+            font-size: 2rem;
+            border: 1px solid white;
+            padding: 3px 8px;
+        }
+
+        .counter_div input {
+            width: 90%;
+            border: none;
+            padding: 7px;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="counter_div">
+        <h1>Input Charter Count</h1>
+        <span class="count">0</span>
+        <hr>
+        <input type="text" class="inputText" placeholder="Type here">
+    </div>
+
+    <script src="http://127.0.0.1:5500/dom2/d.js"></script>
+</body>
+</html>
