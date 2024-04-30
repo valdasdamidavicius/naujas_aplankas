@@ -1,16 +1,32 @@
-const html = `
-<div class="product">
-    <div>
-        <div class="id">ID:{{id}}</div>
-        <div class="title">{{title}}</div>
-        <div class="price">{{price}}eur</div>
-    </div>
-    <div>
-        <button type="button" value="{{id}}" class="gray --edit">Edit</button>
-        <button type="button" value="{{id}}" class="red --delete">Delete</button>
-    </div>
-</div>
-`;
+// const html = `
+// <div class="product">
+//     <div>
+//         <div class="id">ID:{{id}}</div>
+//         <div class="title">{{title}}</div>
+//         <div class="price">{{price}}eur</div>
+//     </div>
+//     <div>
+//         <button type="button" value="{{id}}" class="gray --edit">Edit</button>
+//         <button type="button" value="{{id}}" class="red --delete">Delete</button>
+//     </div>
+// </div>
+// `;
+
+const LAST_ID_LS = 'clientsLastSavedId';
+const CLIENTS_LS = 'clientsList';
+
+
+
+
+const getId = _ => {
+    const id = localStorage.getItem(LAST_ID_LS);
+    if (null === id) {
+        localStorage.setItem(LAST_ID_LS, 1);
+        return 1;
+    }
+    localStorage.setItem(LAST_ID_LS, parseInt(id) + 1);
+    return parseInt(id) + 1;
+}
 
 
 
@@ -18,43 +34,35 @@ window.addEventListener('load', _ => {
 
 
 
-    const LAST_ID_LS = 'productsLastSavedId';
-    const PRODUCTS_LS = 'productsList';
-    let destroyId = 0;
-    let updateId = 0;
+    
+    // let destroyId = 0;
+    // let updateId = 0;
 
-    const listHtml = document.querySelector('.--list');
+    // const listHtml = document.querySelector('.--list');
     const closeButtons = document.querySelectorAll('.--close');
     const createButton = document.querySelector('.--create');
 
-    // create
+    // // create
     const createModal = document.querySelector('.modal--create');
     const storeButton = createModal.querySelector('.--submit');
+    
 
-    // delete
-    const deleteModal = document.querySelector('.modal--delete');
-    const destroyButton = deleteModal.querySelector('.--submit');
+    // // delete
+    // const deleteModal = document.querySelector('.modal--delete');
+    // const destroyButton = deleteModal.querySelector('.--submit');
 
-    // edit
-    const editModal = document.querySelector('.modal--edit');
-    const updateButton = editModal.querySelector('.--submit'); 
+    // // edit
+    // const editModal = document.querySelector('.modal--edit');
+    // const updateButton = editModal.querySelector('.--submit'); 
 
-    const getId = _ => {
-        const id = localStorage.getItem(LAST_ID_LS);
-        if (null === id) {
-            localStorage.setItem(LAST_ID_LS, 1);
-            return 1;
-        }
-        localStorage.setItem(LAST_ID_LS, parseInt(id) + 1);
-        return parseInt(id) + 1;
-    }
+    
     
     const write = data => {
-        localStorage.setItem(PRODUCTS_LS, JSON.stringify(data));
+        localStorage.setItem(CLIENTS_LS, JSON.stringify(data));
     }
     
     const read = _ => {
-        const data = localStorage.getItem(PRODUCTS_LS);
+        const data = localStorage.getItem(CLIENTS_LS);
         if (null === data) {
             return [];
         }
@@ -68,16 +76,16 @@ window.addEventListener('load', _ => {
         write(storeData);
     }
 
-    const destroyData = id => {
-        const data = read();
-        const deleteData = data.filter(d => d.id !== id);
-        write(deleteData);
-    }
+    // const destroyData = id => {
+    //     const data = read();
+    //     const deleteData = data.filter(d => d.id !== id);
+    //     write(deleteData);
+    // }
 
-    const updateData = (id, data) => {
-        const updateData = read().map(p => p.id == id ? {...data, id} : p);
-        write(updateData);
-    }
+    // const updateData = (id, data) => {
+    //     const updateData = read().map(p => p.id == id ? {...data, id} : p);
+    //     write(updateData);
+    // }
 
 // LS functions
 
@@ -94,31 +102,31 @@ window.addEventListener('load', _ => {
         modal.style.display = 'none';
     }
 
-    const showList = _ => {
-        let productsHtml = '';
-        read().forEach(p => {
-            let temp = html;
-            temp = temp.replaceAll('{{id}}', p.id);
-            temp = temp.replaceAll('{{price}}', p.productPrice);
-            temp = temp.replaceAll('{{title}}', p.productTitle);
-            productsHtml += temp;
-        });
-        listHtml.innerHTML = productsHtml;
-        registerDelete();
-        registerEdit();
-    }
+    // const showList = _ => {
+    //     let productsHtml = '';
+    //     read().forEach(p => {
+    //         let temp = html;
+    //         temp = temp.replaceAll('{{id}}', p.id);
+    //         temp = temp.replaceAll('{{price}}', p.productPrice);
+    //         temp = temp.replaceAll('{{title}}', p.productTitle);
+    //         productsHtml += temp;
+    //     });
+    //     listHtml.innerHTML = productsHtml;
+    //     registerDelete();
+    //     registerEdit();
+    // }
 
-    const prepareDeleteModal = id => {
-        const title = read().find(p => p.id == id).productTitle;
-        deleteModal.querySelector('.product--title').innerText = title;
-    }
+    // const prepareDeleteModal = id => {
+    //     const title = read().find(p => p.id == id).productTitle;
+    //     deleteModal.querySelector('.product--title').innerText = title;
+    // }
 
-    const prepareEditModal = id => {
-        const product = read().find(p => p.id == id);
-        editModal.querySelectorAll('[name]').forEach(i => {
-            i.value = product[i.getAttribute('name')];
-        });
-    }
+    // const prepareEditModal = id => {
+    //     const product = read().find(p => p.id == id);
+    //     editModal.querySelectorAll('[name]').forEach(i => {
+    //         i.value = product[i.getAttribute('name')];
+    //     });
+    // }
 
     const getDataFromForm = form => {
         const data = {};
@@ -135,49 +143,38 @@ window.addEventListener('load', _ => {
         showList();  // DOM
     }
 
-    const destroy = _ => {
-        destroyData(destroyId);  // LS
-        hideModal(deleteModal);  // DOM
-        showList();  //DOM
-    }
+    // const destroy = _ => {
+    //     destroyData(destroyId);  // LS
+    //     hideModal(deleteModal);  // DOM
+    //     showList();  //DOM
+    // }
 
-    const update = _ => {
-        const data = getDataFromForm(editModal);
-        updateData(updateId, data);
-        hideModal(editModal);
-        showList();
-    }
+    // const update = _ => {
+    //     const data = getDataFromForm(editModal);
+    //     updateData(updateId, data);
+    //     hideModal(editModal);
+    //     showList();
+    // }
 
-    const registerDelete = _ => {
-        document.querySelectorAll('.--delete').forEach(b => {
-            b.addEventListener('click', _ => {
-                showModal(deleteModal);
-                prepareDeleteModal(parseInt(b.value));
-                destroyId = parseInt(b.value);
-            });
-        });
-    }
+    // const registerDelete = _ => {
+    //     document.querySelectorAll('.--delete').forEach(b => {
+    //         b.addEventListener('click', _ => {
+    //             showModal(deleteModal);
+    //             prepareDeleteModal(parseInt(b.value));
+    //             destroyId = parseInt(b.value);
+    //         });
+    //     });
+    // }
 
-    const registerEdit = _ => {
-        document.querySelectorAll('.--edit').forEach(b => {
-            b.addEventListener('click', _ => {
-                showModal(editModal);
-                prepareEditModal(parseInt(b.value));
-                updateId = parseInt(b.value);
-            });
-        });
-    }
-
-
-
-
-
-
-
-
-
-
-
+    // const registerEdit = _ => {
+    //     document.querySelectorAll('.--edit').forEach(b => {
+    //         b.addEventListener('click', _ => {
+    //             showModal(editModal);
+    //             prepareEditModal(parseInt(b.value));
+    //             updateId = parseInt(b.value);
+    //         });
+    //     });
+    // }
 
     closeButtons.forEach(b => {
         b.addEventListener('click', _ => {
@@ -189,10 +186,10 @@ window.addEventListener('load', _ => {
 
     storeButton.addEventListener('click', _ => store());
 
-    destroyButton.addEventListener('click', _ => destroy());
+    // destroyButton.addEventListener('click', _ => destroy());
 
-    updateButton.addEventListener('click', _ => update());
+    // updateButton.addEventListener('click', _ => update());
 
-    showList();
+    // showList();
 
 });
