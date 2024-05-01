@@ -1,44 +1,30 @@
-// const html = `
-// <div class="product">
-//     <div>
-//         <div class="id">ID:{{id}}</div>
-//         <div class="title">{{title}}</div>
-//         <div class="price">{{price}}eur</div>
-//     </div>
-//     <div>
-//         <button type="button" value="{{id}}" class="gray --edit">Edit</button>
-//         <button type="button" value="{{id}}" class="red --delete">Delete</button>
-//     </div>
-// </div>
-// `;
-
-const LAST_ID_LS = 'clientsLastSavedId';
-const CLIENTS_LS = 'clientsList';
-
-
-
-
-const getId = _ => {
-    const id = localStorage.getItem(LAST_ID_LS);
-    if (null === id) {
-        localStorage.setItem(LAST_ID_LS, 1);
-        return 1;
-    }
-    localStorage.setItem(LAST_ID_LS, parseInt(id) + 1);
-    return parseInt(id) + 1;
-}
+const html = `
+<div class="product">
+    <div>
+        <div class="id">ID:{{id}}</div>
+        <div class="client">{{client}}</div>
+        <div class="clientSurname">{{client2}}</div>
+        <div class="money">{{money}} Eur</div>
+    </div>
+    <div>
+        <button type="button" value="{{id}}" class="green --plus">Pridėti lėšų</button>
+        <button type="button" value="{{id}}" class="yellow --minus">Nuskaičiuoti lėšas</button>
+        <button type="button" value="{{id}}" class="red --delete">Ištrinti</button>
+    </div>
+</div>
+`;
 
 
 
 window.addEventListener('load', _ => {
 
 
-
-    
+    const LAST_ID_LS = 'clientsLastSavedId';
+    const CLIENTS_LS = 'clientsList';
     // let destroyId = 0;
     // let updateId = 0;
 
-    // const listHtml = document.querySelector('.--list');
+    const listHtml = document.querySelector('.--list');
     const closeButtons = document.querySelectorAll('.--close');
     const createButton = document.querySelector('.--create');
 
@@ -55,7 +41,15 @@ window.addEventListener('load', _ => {
     // const editModal = document.querySelector('.modal--edit');
     // const updateButton = editModal.querySelector('.--submit'); 
 
-    
+    const getId = _ => {
+        const id = localStorage.getItem(LAST_ID_LS);
+        if (null === id) {
+            localStorage.setItem(LAST_ID_LS, 1);
+            return 1;
+        }
+        localStorage.setItem(LAST_ID_LS, parseInt(id) + 1);
+        return parseInt(id) + 1;
+    }
     
     const write = data => {
         localStorage.setItem(CLIENTS_LS, JSON.stringify(data));
@@ -63,6 +57,9 @@ window.addEventListener('load', _ => {
     
     const read = _ => {
         const data = localStorage.getItem(CLIENTS_LS);
+        // data.sort(function(a, b) {
+        //     return a.localeCompare(b);
+        // });
         if (null === data) {
             return [];
         }
@@ -102,19 +99,20 @@ window.addEventListener('load', _ => {
         modal.style.display = 'none';
     }
 
-    // const showList = _ => {
-    //     let productsHtml = '';
-    //     read().forEach(p => {
-    //         let temp = html;
-    //         temp = temp.replaceAll('{{id}}', p.id);
-    //         temp = temp.replaceAll('{{price}}', p.productPrice);
-    //         temp = temp.replaceAll('{{title}}', p.productTitle);
-    //         productsHtml += temp;
-    //     });
-    //     listHtml.innerHTML = productsHtml;
-    //     registerDelete();
-    //     registerEdit();
-    // }
+    const showList = _ => {
+        let clientsHtml = '';
+        read().forEach(c => {
+            let temp = html;
+            temp = temp.replaceAll('{{id}}', c.id);
+            temp = temp.replaceAll('{{client}}', c.clientName);
+            temp = temp.replaceAll('{{client2}}', c.clientSurname);
+            temp = temp.replaceAll('{{money}}', c.clientMoney);
+            clientsHtml += temp;
+        });
+        listHtml.innerHTML = clientsHtml;
+        registerDelete();
+        registerEdit();
+    }
 
     // const prepareDeleteModal = id => {
     //     const title = read().find(p => p.id == id).productTitle;
@@ -175,6 +173,12 @@ window.addEventListener('load', _ => {
     //         });
     //     });
     // }
+    const devButton = document.querySelector('.seed');
+    devButton.addEventListener('click', _ => {
+        seed();
+        showList();
+    });
+
 
     closeButtons.forEach(b => {
         b.addEventListener('click', _ => {
@@ -190,6 +194,30 @@ window.addEventListener('load', _ => {
 
     // updateButton.addEventListener('click', _ => update());
 
-    // showList();
+    
+
+
+    const seedData = [
+        {id: 1, clientName: 'Klevas', clientSurname: 'Auksaspalvis', clientMoney: '1425 '},
+        {id: 2, clientName: 'Raudė', clientSurname: 'Ežeraitė', clientMoney: '703 '},
+        {id: 3, clientName: 'Ruduo', clientSurname: 'Gelsvalapis', clientMoney: '15 '},
+        {id: 4, clientName: 'Zylė', clientSurname: 'Gražiasparnė', clientMoney: '489 '},
+        {id: 5, clientName: 'Braškė', clientSurname: 'Obelaitė', clientMoney: '2541 '},
+        {id: 6, clientName: 'Bazilikas', clientSurname: 'Ožekšnis', clientMoney: '57 '},
+        {id: 7, clientName: 'Smidras', clientSurname: 'Paprikėnas', clientMoney: '984 '},
+        {id: 8, clientName: 'Magnolija', clientSurname: 'Skardžiabalsienė', clientMoney: '8652 '},
+        {id: 9, clientName: 'Kriaušė', clientSurname: 'Voveraitė', clientMoney: '698 '},
+        {id: 10, clientName: 'Vilkas', clientSurname: 'Žuvėdrinis', clientMoney: '352 '},
+    ];
+
+    
+
+    const seed = _ => {
+        write(seedData);
+        localStorage.setItem(LAST_ID_LS, 10);
+    }
+
+    showList();
+
 
 });
