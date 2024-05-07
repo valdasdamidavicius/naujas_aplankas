@@ -21,7 +21,7 @@ window.addEventListener('load', _ => {
 
     const LAST_ID_LS = 'clientsLastSavedId';
     const CLIENTS_LS = 'clientsList';
-    // let destroyId = 0;
+    let destroyId = 0;
     // let updateId = 0;
 
     const listHtml = document.querySelector('.--list');
@@ -34,8 +34,8 @@ window.addEventListener('load', _ => {
     
 
     // // delete
-    // const deleteModal = document.querySelector('.modal--delete');
-    // const destroyButton = deleteModal.querySelector('.--submit');
+    const deleteModal = document.querySelector('.modal--delete');
+    const deleteButton = deleteModal.querySelector('.--submit');
 
     // // edit
     // const editModal = document.querySelector('.modal--edit');
@@ -57,9 +57,6 @@ window.addEventListener('load', _ => {
     
     const read = _ => {
         const data = localStorage.getItem(CLIENTS_LS);
-        // data.sort(function(a, b) {
-        //     return a.localeCompare(b);
-        // });
         if (null === data) {
             return [];
         }
@@ -73,11 +70,11 @@ window.addEventListener('load', _ => {
         write(storeData);
     }
 
-    // const destroyData = id => {
-    //     const data = read();
-    //     const deleteData = data.filter(d => d.id !== id);
-    //     write(deleteData);
-    // }
+    const destroyData = id => {
+        const data = read();
+        const deleteData = data.filter(c => c.id !== id);
+        write(deleteData);
+    }
 
     // const updateData = (id, data) => {
     //     const updateData = read().map(p => p.id == id ? {...data, id} : p);
@@ -111,13 +108,13 @@ window.addEventListener('load', _ => {
         });
         listHtml.innerHTML = clientsHtml;
         registerDelete();
-        registerEdit();
+        // registerEdit();
     }
 
-    // const prepareDeleteModal = id => {
-    //     const title = read().find(p => p.id == id).productTitle;
-    //     deleteModal.querySelector('.product--title').innerText = title;
-    // }
+    const prepareDeleteModal = id => {
+        const title = read().find(c => c.id == id).clientSurname;
+        deleteModal.querySelector('.client--clientSurname').innerText = title;
+    }
 
     // const prepareEditModal = id => {
     //     const product = read().find(p => p.id == id);
@@ -141,11 +138,11 @@ window.addEventListener('load', _ => {
         showList();  // DOM
     }
 
-    // const destroy = _ => {
-    //     destroyData(destroyId);  // LS
-    //     hideModal(deleteModal);  // DOM
-    //     showList();  //DOM
-    // }
+    const destroy = _ => {
+        destroyData(destroyId);  // LS
+        hideModal(deleteModal);  // DOM
+        showList();  //DOM
+    }
 
     // const update = _ => {
     //     const data = getDataFromForm(editModal);
@@ -154,15 +151,15 @@ window.addEventListener('load', _ => {
     //     showList();
     // }
 
-    // const registerDelete = _ => {
-    //     document.querySelectorAll('.--delete').forEach(b => {
-    //         b.addEventListener('click', _ => {
-    //             showModal(deleteModal);
-    //             prepareDeleteModal(parseInt(b.value));
-    //             destroyId = parseInt(b.value);
-    //         });
-    //     });
-    // }
+    const registerDelete = _ => {
+        document.querySelectorAll('.--delete').forEach(b => {
+            b.addEventListener('click', _ => {
+                showModal(deleteModal);
+                prepareDeleteModal(parseInt(b.value));
+                destroyId = parseInt(b.value);
+            });
+        });
+    }
 
     // const registerEdit = _ => {
     //     document.querySelectorAll('.--edit').forEach(b => {
@@ -190,7 +187,7 @@ window.addEventListener('load', _ => {
 
     storeButton.addEventListener('click', _ => store());
 
-    // destroyButton.addEventListener('click', _ => destroy());
+    deleteButton.addEventListener('click', _ => destroy());
 
     // updateButton.addEventListener('click', _ => update());
 
@@ -217,7 +214,7 @@ window.addEventListener('load', _ => {
         localStorage.setItem(LAST_ID_LS, 10);
     }
 
-    showList();
+    setTimeout(_ => showList(), 2000);
 
 
 });
