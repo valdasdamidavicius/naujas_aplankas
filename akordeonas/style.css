@@ -1,0 +1,41 @@
+section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 70px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: rgb(157, 7, 157);
+}
+
+.acordeon {
+    background-color: rgb(195, 193, 193);
+    cursor: pointer;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.acordeon::after {
+    font-family: "bootstrap-icons";
+    content: "\F4FA";
+    font-size: 28px;
+}
+.desc {
+    padding: 0 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s ease;
+}
+
+.active::after {
+    font-family: "bootstrap-icons";
+    content: "\F2E6";
+    font-size: 28px;
+}
