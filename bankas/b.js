@@ -122,8 +122,8 @@ window.addEventListener('load', _ => {
 
     const prepareEditModal1 = id => {
         const product = read().find(c => c.id == id);
-        editModal1.querySelectorAll('[name]').forEach(i => {
-            i.value = product[i.getAttribute('name')];
+        editModal1.querySelectorAll('[clientSurname]').forEach(i => {
+            i.value = product[i.getAttribute('clientSurname')];
         });
     }
 
