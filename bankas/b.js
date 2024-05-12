@@ -22,7 +22,7 @@ window.addEventListener('load', _ => {
     const LAST_ID_LS = 'clientsLastSavedId';
     const CLIENTS_LS = 'clientsList';
     let destroyId = 0;
-    // let updateId = 0;
+    let updateId = 0;
 
     const listHtml = document.querySelector('.--list');
     const closeButtons = document.querySelectorAll('.--close');
@@ -38,8 +38,11 @@ window.addEventListener('load', _ => {
     const deleteButton = deleteModal.querySelector('.--submit');
 
     // // edit
-    // const editModal = document.querySelector('.modal--edit');
-    // const updateButton = editModal.querySelector('.--submit'); 
+    const editModal1 = document.querySelector('.modal--edit1');
+    const updateButton = editModal1.querySelector('.--submit');
+
+    // const editModal2 = document.querySelector('.modal--edit2');
+    // const updateButton2 = editModal2.querySelector('.--submit');
 
     const getId = _ => {
         const id = localStorage.getItem(LAST_ID_LS);
@@ -76,10 +79,10 @@ window.addEventListener('load', _ => {
         write(deleteData);
     }
 
-    // const updateData = (id, data) => {
-    //     const updateData = read().map(p => p.id == id ? {...data, id} : p);
-    //     write(updateData);
-    // }
+    const updateData = (id, data) => {
+        const updateData = read().map(p => p.id == id ? {...data, id} : p);
+        write(updateData);
+    }
 
 // LS functions
 
@@ -108,7 +111,8 @@ window.addEventListener('load', _ => {
         });
         listHtml.innerHTML = clientsHtml;
         registerDelete();
-        // registerEdit();
+        registerEdit1();
+        // registerEdit2();
     }
 
     const prepareDeleteModal = id => {
@@ -116,9 +120,16 @@ window.addEventListener('load', _ => {
         deleteModal.querySelector('.client--clientSurname').innerText = title;
     }
 
-    // const prepareEditModal = id => {
-    //     const product = read().find(p => p.id == id);
-    //     editModal.querySelectorAll('[name]').forEach(i => {
+    const prepareEditModal1 = id => {
+        const product = read().find(c => c.id == id);
+        editModal1.querySelectorAll('[name]').forEach(i => {
+            i.value = product[i.getAttribute('name')];
+        });
+    }
+
+    // const prepareEditModal2 = id => {
+    //     const product = read().find(c => c.id == id);
+    //     editModal2.querySelectorAll('[name]').forEach(i => {
     //         i.value = product[i.getAttribute('name')];
     //     });
     // }
@@ -144,10 +155,17 @@ window.addEventListener('load', _ => {
         showList();  //DOM
     }
 
-    // const update = _ => {
-    //     const data = getDataFromForm(editModal);
+    const update = _ => {
+        const data = getDataFromForm(editModal1);
+        updateData(updateId, data);
+        hideModal(editModal1);
+        showList();
+    }
+
+    // const update2 = _ => {
+    //     const data = getDataFromForm(editModal2);
     //     updateData(updateId, data);
-    //     hideModal(editModal);
+    //     hideModal(editModal2);
     //     showList();
     // }
 
@@ -161,15 +179,26 @@ window.addEventListener('load', _ => {
         });
     }
 
-    // const registerEdit = _ => {
-    //     document.querySelectorAll('.--edit').forEach(b => {
+    const registerEdit1 = _ => {
+        document.querySelectorAll('.--edit1').forEach(b => {
+            b.addEventListener('click', _ => {
+                showModal(editModal1);
+                prepareEditModal1(parseInt(b.value));
+                updateId = parseInt(b.value);
+            });
+        });
+    }
+
+    // const registerEdit2 = _ => {
+    //     document.querySelectorAll('.--edit2').forEach(b => {
     //         b.addEventListener('click', _ => {
-    //             showModal(editModal);
-    //             prepareEditModal(parseInt(b.value));
+    //             showModal(editModal2);
+    //             prepareEditModal2(parseInt(b.value));
     //             updateId = parseInt(b.value);
     //         });
     //     });
     // }
+
     const devButton = document.querySelector('.seed');
     devButton.addEventListener('click', _ => {
         seed();
@@ -189,7 +218,9 @@ window.addEventListener('load', _ => {
 
     deleteButton.addEventListener('click', _ => destroy());
 
-    // updateButton.addEventListener('click', _ => update());
+    updateButton.addEventListener('click', _ => update());
+
+    // updateButton2.addEventListener('click', _ => update2());
 
     
 
