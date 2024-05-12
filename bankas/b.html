@@ -35,6 +35,19 @@
 
         <div class="products-container">
             <div class="products">
+                <div class="product">
+                    <div>
+                        <div class="id">ID:{{id}}</div>
+                        <div class="client">{{client}}</div>
+                        <div class="clientSurname">{{client2}}</div>
+                        <div class="money">{{money}} Eur</div>
+                    </div>
+                    <div>
+                        <button type="button" value="{{id}}" class="green --plus">Pridėti lėšų</button>
+                        <button type="button" value="{{id}}" class="yellow --minus">Nuskaičiuoti lėšas</button>
+                        <button type="button" value="{{id}}" class="red --delete">Ištrinti</button>
+                    </div>
+                </div>
                 <div class="buttons">
                     <div class="seed">Klientų sąrašas</div>
                 </div>
@@ -80,7 +93,7 @@
                     <input type="text" name="clientMoney">
                 </div>
                 <div class="buttons">
-                    <button type="button" class="green --submit">Pridėti</button>
+                    <button type="button" class="green --plus">Pridėti</button>
                     <button type="button" class="gray --close">Atšaukti</button>
                 </div>
             </div>
@@ -111,7 +124,7 @@
                     <input type="text" name="clientMoney">
                 </div>
                 <div class="buttons">
-                    <button type="button" class="green --submit">Nuskaičiuoti</button>
+                    <button type="button" class="green --minus">Nuskaičiuoti</button>
                     <button type="button" class="gray --close">Atšaukti</button>
                 </div>
             </div>

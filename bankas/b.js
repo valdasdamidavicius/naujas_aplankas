@@ -39,7 +39,7 @@ window.addEventListener('load', _ => {
 
     // // edit
     const editModal1 = document.querySelector('.modal--edit1');
-    const updateButton = editModal1.querySelector('.--submit');
+    const updateButton = editModal1.querySelector('.--plus');
 
     // const editModal2 = document.querySelector('.modal--edit2');
     // const updateButton2 = editModal2.querySelector('.--submit');
@@ -199,11 +199,11 @@ window.addEventListener('load', _ => {
     //     });
     // }
 
-    const devButton = document.querySelector('.seed');
-    devButton.addEventListener('click', _ => {
-        seed();
-        showList();
-    });
+    // const devButton = document.querySelector('.seed');
+    // devButton.addEventListener('click', _ => {
+    //     seed();
+    //     showList();
+    // });
 
 
     closeButtons.forEach(b => {
@@ -225,27 +225,29 @@ window.addEventListener('load', _ => {
     
 
 
-    const seedData = [
-        {id: 1, clientName: 'Klevas', clientSurname: 'Auksaspalvis', clientMoney: '1425 '},
-        {id: 2, clientName: 'Raudė', clientSurname: 'Ežeraitė', clientMoney: '703 '},
-        {id: 3, clientName: 'Ruduo', clientSurname: 'Gelsvalapis', clientMoney: '15 '},
-        {id: 4, clientName: 'Zylė', clientSurname: 'Gražiasparnė', clientMoney: '489 '},
-        {id: 5, clientName: 'Braškė', clientSurname: 'Obelaitė', clientMoney: '2541 '},
-        {id: 6, clientName: 'Bazilikas', clientSurname: 'Ožekšnis', clientMoney: '57 '},
-        {id: 7, clientName: 'Smidras', clientSurname: 'Paprikėnas', clientMoney: '984 '},
-        {id: 8, clientName: 'Magnolija', clientSurname: 'Skardžiabalsienė', clientMoney: '8652 '},
-        {id: 9, clientName: 'Kriaušė', clientSurname: 'Voveraitė', clientMoney: '698 '},
-        {id: 10, clientName: 'Vilkas', clientSurname: 'Žuvėdrinis', clientMoney: '352 '},
-    ];
-
     
-
-    const seed = _ => {
-        write(seedData);
-        localStorage.setItem(LAST_ID_LS, 10);
-    }
 
     setTimeout(_ => showList(), 2000);
 
 
 });
+
+// const seedData = [
+    //     {id: 1, clientName: 'Klevas', clientSurname: 'Auksaspalvis', clientMoney: '1425 '},
+    //     {id: 2, clientName: 'Raudė', clientSurname: 'Ežeraitė', clientMoney: '703 '},
+    //     {id: 3, clientName: 'Ruduo', clientSurname: 'Gelsvalapis', clientMoney: '15 '},
+    //     {id: 4, clientName: 'Zylė', clientSurname: 'Gražiasparnė', clientMoney: '489 '},
+    //     {id: 5, clientName: 'Braškė', clientSurname: 'Obelaitė', clientMoney: '2541 '},
+    //     {id: 6, clientName: 'Bazilikas', clientSurname: 'Ožekšnis', clientMoney: '57 '},
+    //     {id: 7, clientName: 'Smidras', clientSurname: 'Paprikėnas', clientMoney: '984 '},
+    //     {id: 8, clientName: 'Magnolija', clientSurname: 'Skardžiabalsienė', clientMoney: '8652 '},
+    //     {id: 9, clientName: 'Kriaušė', clientSurname: 'Voveraitė', clientMoney: '698 '},
+    //     {id: 10, clientName: 'Vilkas', clientSurname: 'Žuvėdrinis', clientMoney: '352 '},
+    // ];
+
+    
+
+    // const seed = _ => {
+    //     write(seedData);
+    //     localStorage.setItem(LAST_ID_LS, 10);
+    // }
