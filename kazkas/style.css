@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+}
+
+.box1 {
+    background-image: url("./images/5234906.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    animation: dico 1s infinite alternate linear;
+}
+
+@keyframes dico {
+    0% {
+        background-color: tomato;
+    }
+
+    25% {
+        background-color: brown;
+    }
+
+    50% {
+        background-color: red;
+    }
+
+    75% {
+        background-color: aqua;
+    }
+
+    100% {
+        background-color: yellow;
+    }
+}
+
+.box2 {
+    background-image: linear-gradient(
+    310deg,
+    hsl(240deg 87% 24%) 0%,
+    hsl(314deg 100% 29%) 23%,
+    hsl(337deg 100% 44%) 37%,
+    hsl(17deg 100% 59%) 48%,
+    hsl(45deg 100% 50%) 57%,
+    hsl(59deg 100% 46%) 66%,
+    hsl(68deg 100% 43%) 74%,
+    hsl(79deg 100% 42%) 82%,
+    hsl(94deg 85% 43%) 90%,
+    hsl(132deg 100% 37%) 100%
+  );
+  background-size: 200%;
+  animation: linearAnimation 10s infinite linear alternate;
+}
+
+@keyframes linearAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+.box3 {
+    background-image: url("./images/img_20190609_140908_burst003.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.penguin {
+    width: 200px;
+    animation: cold 1ms infinite linear alternate;
+}
+
+@keyframes cold {
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(2deg);
+    }
+    50% {
+        transform: rotate(0);
+    }
+    75% {
+        transform: rotate(-2deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.box4 {
+    background-image: url("./images/horizontal-view-of-asphalt-road-in-thailand-background-empty-land-and-side-eucalyptus-forest-under-the-blue-sky-free-photo.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.car {
+    width: 600px;
+    position: relative;
+    top: 250px;
+    animation: car 5s infinite linear;
+}
+
+@keyframes car {
+    0% {
+        transform: translate(-1500px);
+    }
+    100% {
+        transform: translate(1000px);
+    }
+}
+
+.box5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.heart {
+    width: 300px;
+    animation: heart 1s infinite alternate linear;
+}
+
+@keyframes heart {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.5);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
