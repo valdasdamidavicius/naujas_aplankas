@@ -1,0 +1,35 @@
+.container {
+    display: grid;
+    grid-template-columns: 320px 9px 414px 10px 50px;
+    grid-template-rows: 414px 9px 155px 20px 130px;
+    gap: 0px;
+    width: 748px;
+    height: 748px;
+    box-sizing: border-box;
+}
+
+.raudonas {
+    background-color: red;
+    width: 320px;
+    height: 414px;
+}
+
+.melynas {
+    background-color: blue;
+}
+
+.geltonas {
+    background-color: yellow;
+    width: 198px;
+    height: 20px;
+}
+
+.baltas1 {
+    background-color: gray;
+    width: 419px;
+    height: 414px;
+}
+
+.baltas2 {
+    background-color: rgb(192, 184, 184);
+}
